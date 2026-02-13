@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<title>Beautiful Envelope</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Segoe UI, sans-serif;
+    background: url("1.png") no-repeat center center/cover;
+    position:relative;
+}
+body::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.4);
+    backdrop-filter: blur(4px);
+    z-index:0;
+}
+.wrapper{
+    position:relative;
+    width:700px;
+    height:450px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:1;
+}
+.envelope{
+    width:280px;
+    height:180px;
+    background:linear-gradient(145deg,#ffb3c6,#ff8fab);
+    border-radius:12px;
+    position:absolute;
+    box-shadow:0 25px 50px rgba(0,0,0,0.4);
+    transition:0.8s cubic-bezier(.68,-0.55,.27,1.55);
+    overflow:hidden;
+}
+.envelope::before{
+    content:"";
+    position:absolute;
+    border-left:140px solid transparent;
+    border-right:140px solid transparent;
+    border-top:90px solid rgba(255,255,255,0.4);
+    top:0;
+}
+.name{
+    position:absolute;
+    top:65px;
+    width:100%;
+    text-align:center;
+    font-size:28px;
+    font-family:'Great Vibes', cursive;
+    color:white;
+    text-shadow:0 3px 8px rgba(0,0,0,0.4);
+}
+.flap{
+    position:absolute;
+    border-left:140px solid transparent;
+    border-right:140px solid transparent;
+    border-bottom:100px solid #ff4d6d;
+    top:-100px;
+    left:0;
+    transform-origin:bottom;
+    transition:0.8s ease;
+}
+.seal{
+    position:absolute;
+    width:50px;
+    height:50px;
+    background:#c9184a;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    font-size:22px;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    box-shadow:0 10px 20px rgba(0,0,0,0.3);
+}
+.letter{
+    width:420px;
+    max-height:420px;
+    background:white;
+    border-radius:15px;
+    box-shadow:0 30px 60px rgba(0,0,0,0.5);
+    padding:30px;
+    position:absolute;
+    opacity:0;
+    transform:scale(0.7);
+    transition:0.8s cubic-bezier(.68,-0.55,.27,1.55);
+    overflow-y:auto;
+    text-align:left;
+    line-height:1.6;
+    font-size:16px;
+}
+.wrapper.open .envelope{
+    transform:translateX(-250px) scale(0.9);
+}
+.wrapper.open .flap{
+    transform:rotateX(180deg);
+}
+
+.wrapper.open .letter{
+    opacity:1;
+    transform:scale(1);
+}
+.buttons{
+    position:absolute;
+    bottom:-80px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:20px;
+}
+button{
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    font-weight:bold;
+}
+.openBtn{
+    background:#c9184a;
+    color:white;
+}
+.closeBtn{
+    background:#343a40;
+    color:white;
+}
+</style>
+</head>
+<body>
+<div class="wrapper" id="wrapper">
+    <div class="envelope">
+        <div class="flap"></div>
+        <div class="name">Anudari</div>
+        <div class="seal">❤</div>
+    </div>
+    <div class="letter">
+        💌 <strong>Сайн уу, Анударь аа.</strong><br><br>
+        Чамд хэлэх нэг чухал зүйл байна…  
+        Жоохон гэнтийн бэлэг барья гэж бодоод энэ үгийг бичиж сууна.<br><br>
+
+        Уг нь чамтай уулзаад, Valentine-ий өдөр хамтдаа өнгөрөөж,  
+        илүү дотно танилцъя гэж үнэхээр хүссэн.  
+        Даанч чи Увс руу явна гэдгийг мэдээд жаахан харамслаа.<br><br>
+
+        Гэхдээ зай надад саад биш.  
+        Чамайг илүү таних хүсэл минь улам л нэмэгдэж байна.  
+        Нэг өдөр бид хоёр инээж суух тэр мөчийг би тэсэн ядан хүлээж байна.<br><br>
+
+        Энэ Valentine-ий өдөр чамд  
+        инээмсэглэл, дулаан, аз жаргал авчирна гэж найдаж байна.  
+        Миний энэ жижигхэн “гэнэтийн бэлэг” чамд жаахан ч гэсэн баяр өгөөсэй. 💖❤️
+    </div>
+    <div class="buttons">
+        <button class="openBtn" onclick="openLetter()">OPEN</button>
+        <button class="closeBtn" onclick="closeLetter()">CLOSE</button>
+    </div>
+</div>
+<script>
+function openLetter(){
+    document.getElementById("wrapper").classList.add("open");
+}
+function closeLetter(){
+    document.getElementById("wrapper").classList.remove("open");
+}
+</script>
+</body>
+</html>
